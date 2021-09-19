@@ -1,5 +1,5 @@
 [tool.versioner]
-version-file = 'dvd/_version.py'
+version-file = 'dvd_apis/_version.py'
 
 [tool.black]
 line-length = 100
