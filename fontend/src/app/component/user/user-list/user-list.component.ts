@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   async getUser() {
-    this.userList = await this.userService.getUsers()
+    this.userList = await this.userService.getUsers().then()
     console.log(this.userList)
 
   }

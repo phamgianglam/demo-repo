@@ -10,7 +10,7 @@ import { User } from '../../../type'
 })
 export class UserFormComponent implements OnInit {
   myId: string | null = null;
-  myUser: any
+  myUser = new User()
   constructor(private route: ActivatedRoute, private userService: UserService) {
 
   }
@@ -21,14 +21,16 @@ export class UserFormComponent implements OnInit {
       let id = this.route.snapshot.paramMap.get('id')
       console.log("i am here", id)
       this.myId = id
-      if (this.myId !== null) {
-        this.myUser = this.userService.getUser(<string>id);
-        console.log(this.myUser)
+      if (typeof this.myId === "string") {
+        this.initUser(this.myId)
       }
     })
   }
 
 
-
+  async initUser(id: string) {
+    this.myUser = await this.userService.getUser(<string>id).then();
+    console.warn(this.myUser)
+  }
 
 }

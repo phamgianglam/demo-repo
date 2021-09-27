@@ -21,13 +21,13 @@ enum districtEnum {
 }
 
 
-export interface User {
-    id: string;
-    name: string;
-    phone: string;
-    citizenId: string;
-    address: string;
-    district: districtEnum;
-    ward: wardEnum;
-    vip: boolean
+export class User {
+    id: string = "string";
+    name: string = "string";
+    phone: string = "string";
+    citizenId: string = "string";
+    address: string = "string";
+    district: districtEnum = districtEnum.district_1;
+    ward: wardEnum = wardEnum.ward_a;
+    vip: boolean = false
 }
