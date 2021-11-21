@@ -1,7 +1,5 @@
-fastapi==0.68.0
+fastapi[all] 
 sqlalchemy[mypy]==1.4.20
 alembic==1.6.5
-uvloop==0.14.0
-uvicorn[standard]==0.14.0
 black==19.10b0
 asyncpg==0.24.0

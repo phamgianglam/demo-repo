@@ -1,11 +1,12 @@
 from uuid import UUID, uuid4
 from enum import Enum
-from sqlalchemy.sql.sqltypes import Boolean
+from sqlalchemy.sql.schema import ForeignKey, Index
+from sqlalchemy.sql.sqltypes import Boolean, DateTime
 from sqlalchemy.types import Enum as PgEnum, String
-from sqlalchemy import Column, Constraint
+from sqlalchemy import Column, Constraint, rela
 from sqlalchemy.dialects.postgresql import UUID as sqlUUID
 from sqlalchemy import MetaData
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, relationship
 
 BaseModel = declarative_base(MetaData())
 
@@ -41,3 +42,19 @@ class User(BaseModel):
     ward: WardEnum = Column(PgEnum(WardEnum), nullable=False)
     vip: bool = Column(Boolean, default=False, nullable=False)
 
+class Series(BaseModel):
+    _tablename_="series"
+    id_: UUID = Column("id", sqlUUID(as_uuid=True), default=uuid4(), primary_key=True)
+    name: str = Column(String, nullable=False, unique=True)
+    date:DateTime=Column(DateTime,nullable=False)
+    series_name:str = relationship("Child", back_populates="children")
+
+class Titile(BaseModel):
+    _tablename_="titile"
+    id_: UUID = Column("id", sqlUUID(as_uuid=True), default=uuid4(), primary_key=True)
+    name: str = Column(String, nullable=False, unique=True)
+    date:DateTime=Column(DateTime,nullable=False)
+    series_name:str = relationship("Parent", back_populates="children")
+
+class Dvd(BaseModel):
+    _tablename_="titile"
