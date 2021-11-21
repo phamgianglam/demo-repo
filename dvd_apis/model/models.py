@@ -15,7 +15,9 @@ class Series(BaseModel):
     __tablename__ = "series"
     id_: UUID = Column("id", sqlUUID(as_uuid=True), default=uuid4, primary_key=True)
     name: str = Column(String, nullable=False, unique=True)
-    date: datetime = Column(DateTime, nullable=False,)
+    date: datetime = Column(
+        DateTime, nullable=False,
+    )
     titles: List[str] = relationship("Title", backref=backref("series"))
 
 
