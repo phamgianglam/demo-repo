@@ -3,3 +3,4 @@ sqlalchemy[mypy]==1.4.20
 alembic==1.6.5
 black==19.10b0
 asyncpg==0.24.0
+uvloop

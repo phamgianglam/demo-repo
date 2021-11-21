@@ -4,4 +4,4 @@ from dvd_apis.apis import config_route
 
 app = FastAPI(docs_url=f"/{config.API_PREFIX}/")
 
-config_route(app)
+config_route(app, prefix=config.API_PREFIX )
