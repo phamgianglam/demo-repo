@@ -23,3 +23,13 @@ class SeriesModel(BaseModel):
         allow_population_by_field_name = True
         orm_mode = True
         extra = "forbid"
+
+
+class SeriesPatchModel(BaseModel):
+    name: str = Field(None, description="name")
+    date: datetime = Field(None, description="date")
+
+    class Config:
+        allow_population_by_field_name = True
+        orm_mode = True
+        extra = "forbid"
