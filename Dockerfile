@@ -7,8 +7,8 @@ WORKDIR /usr/src/dvd-api
 
 ENV  DATABASE_URI postgresql://postgres:password@localhost:5432/dvd_api
 
-COPY requirement.txt .
-RUN pip3 install -r requirement.txt
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
 COPY . .
 
