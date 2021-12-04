@@ -5,3 +5,7 @@ from dvd_apis.apis import config_route
 app = FastAPI(docs_url=f"/{config.API_PREFIX}/")
 
 config_route(app, prefix=config.API_PREFIX)
+
+@app.get('/healthcheck', status_code=200)
+async def healthcheck():
+    return "ok"        
