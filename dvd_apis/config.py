@@ -12,14 +12,14 @@ class AsyncPostgresDsn(PostgresDsn):
 
 
 class Config(BaseSettings):
-    DATABASE_URI: PostgresDsn
+    DATABASE_URL: PostgresDsn
     API_PREFIX: str = DEFAULT_PREFIX
     version: str = DEFAULT_VERSION
 
     @property
-    def ASYNC_DATABASE_URI(self) -> AsyncPostgresDsn:
-        ASYNC_DATABASE_URI = self.DATABASE_URI.replace("postgresql://", "postgresql+asyncpg://")
-        return ASYNC_DATABASE_URI
+    def ASYNC_DATABASE_URL(self) -> AsyncPostgresDsn:
+        ASYNC_DATABASE_URL = self.DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
+        return ASYNC_DATABASE_URL
 
 
 config = Config()

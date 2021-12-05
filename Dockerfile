@@ -5,7 +5,7 @@ RUN mkdir -p /usr/src/dvd-api
 
 WORKDIR /usr/src/dvd-api
 
-ENV  DATABASE_URI postgresql://postgres:password@localhost:5432/dvd_api
+ENV  DATABASE_URL postgresql://postgres:password@localhost:5432/dvd_api
 
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
