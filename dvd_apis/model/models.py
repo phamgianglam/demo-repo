@@ -2,7 +2,7 @@ from uuid import UUID, uuid4
 from typing import List
 from datetime import datetime
 from sqlalchemy.sql.schema import ForeignKey
-from sqlalchemy.sql.sqltypes import DateTime, String
+from sqlalchemy.sql.sqltypes import DateTime, Integer, String
 from sqlalchemy import Column
 from sqlalchemy.dialects.postgresql import UUID as sqlUUID
 from sqlalchemy import MetaData
@@ -15,8 +15,10 @@ class Series(BaseModel):
     __tablename__ = "series"
     id_: UUID = Column("id", sqlUUID(as_uuid=True), default=uuid4, primary_key=True)
     name: str = Column(String, nullable=False, unique=True)
-    date: datetime = Column(
-        DateTime, nullable=False,
+    owner: str = Column(String, nullable=False, unique=False)
+    date: int = Column(
+        Integer,
+        nullable=False,
     )
     titles: List[str] = relationship("Title", backref=backref("series"))
 

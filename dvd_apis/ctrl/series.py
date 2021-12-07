@@ -23,7 +23,6 @@ async def get_resource(name: str, session: AsyncSession):
 async def delete_resource(name: str, session: AsyncSession):
     stm = select(Series).where(Series.name == name)
     series = (await session.execute(stm)).scalars().one()
-    print (series.name)
     await session.delete(series)
     await session.commit()
     return

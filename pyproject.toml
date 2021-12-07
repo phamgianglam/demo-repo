@@ -3,7 +3,7 @@ version-file = 'dvd_apis/_version.py'
 
 [tool.black]
 line-length = 100
-target-version = ['py36']
+target-version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -19,8 +19,8 @@ exclude = '''
   | venv
   | migrations
   | __pycache__
-
-  # The following are specific to Black, you probably don't want those.
+  | \.env
+  | env
   | blib2to3
   | tests/data
 )/
