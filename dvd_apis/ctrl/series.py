@@ -2,7 +2,6 @@ from uuid import UUID
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select
-from sqlalchemy.orm.session import Session
 from sqlalchemy.sql.expression import update
 from ..schemas import SeriesPostModel, SeriesPatchModel
 from ..model.models import Series
@@ -17,14 +16,15 @@ async def create_resource(series: SeriesPostModel, session: AsyncSession):
 
 async def get_resource(name: str, session: AsyncSession):
     stm = select(Series).where(Series.name == name)
-    result = (await session.execute(stm)).scalar_one()
+    result = (await session.execute(stm)).scalars().one()
     return result
 
 
 async def delete_resource(name: str, session: AsyncSession):
     stm = select(Series).where(Series.name == name)
-    series = (await session.execute(stm)).scalar_one()
-    session.delete(series)
+    series = (await session.execute(stm)).scalars().one()
+    print (series.name)
+    await session.delete(series)
     await session.commit()
     return
 
