@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 82182c9eb1e0
+Revision ID: 8fdb479d08e5
 Revises: 
-Create Date: 2021-12-05 15:53:26.571679
+Create Date: 2021-12-17 00:19:48.390138
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '82182c9eb1e0'
+revision = '8fdb479d08e5'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,8 @@ def upgrade():
     op.create_table('series',
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
-    sa.Column('date', sa.DateTime(), nullable=False),
+    sa.Column('owner', sa.String(), nullable=False),
+    sa.Column('date', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -29,8 +30,6 @@ def upgrade():
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('date', sa.DateTime(), nullable=False),
-    sa.Column('series_name', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['series_name'], ['series.name'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )

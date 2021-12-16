@@ -3,17 +3,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select
 from sqlalchemy.sql.expression import update
-from ..schemas import SeriesPostModel, SeriesPatchModel
-from ..model.models import Series
+from ..schemas import TitlesPostModel, SeriesPatchModel
+from ..model.models import Title, Series
 
 
-async def create_resource(series: SeriesPostModel, session: AsyncSession):
-    print(series.date)
-    new_series = Series(name=series.name, owner=series.owner, date=series.date)
-    session.add(new_series)
+async def create_titles(titles: TitlesPostModel, session: AsyncSession):
+    new_title = Title(**titles.dict(exclude_unset=True))
+    session.add(new_title)
     await session.commit()
-    await session.refresh(new_series)
-    return new_series
+    return new_title
 
 
 async def get_resource(name: str, session: AsyncSession):
